@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AT Testing – Assistive Technology Trainer Knowledge Tests</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="site-title" href="index.html">AT Testing</a>
+  </header>
+
+  <main id="main">
+    <h1>Assistive Technology Trainer Knowledge Tests</h1>
+    <p class="intro">
+      Choose a product below to take a short knowledge test. Each test has 15 multiple-choice
+      questions covering that product's core features, keyboard commands, and appropriate use.
+      Results and explanations are shown immediately after you submit.
+    </p>
+
+    <div class="disclaimer">
+      <h2>Draft content notice</h2>
+      <p>
+        These questions were drafted as a starting point and have <strong>not yet been verified
+        against current official vendor documentation</strong> for every product and version.
+        Before using this test to evaluate trainers, please review each question — especially
+        exact keyboard shortcuts — against the current documentation for the product version
+        your organization supports, and correct or remove anything inaccurate in the
+        <code>data/</code> files.
+      </p>
+    </div>
+
+    <ul class="product-grid">
+      <!-- Populated by js/home.js from js/products.js -->
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <p>AT Testing — an internal knowledge check for assistive technology trainers.</p>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Test – AT Testing</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="site-title" href="index.html">AT Testing</a>
+  </header>
+
+  <main id="main">
+    <p><a href="index.html">&larr; Back to all tests</a></p>
+
+    <h1 id="quiz-title">Loading test…</h1>
+    <p id="quiz-intro"></p>
+
+    <div id="error-summary" role="alert" tabindex="-1" hidden>
+      <h2>Some questions still need an answer</h2>
+      <ul id="error-list"></ul>
+    </div>
+
+    <form id="quiz-form" novalidate>
+      <div id="questions-container"></div>
+      <button type="submit" class="button">Submit Test</button>
+    </form>
+
+    <section id="results" aria-live="polite" hidden></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>AT Testing — an internal knowledge check for assistive technology trainers.</p>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="data/questions-magnifier.js"></script>
+  <script src="data/questions-narrator.js"></script>
+  <script src="data/questions-nvda.js"></script>
+  <script src="data/questions-jaws.js"></script>
+  <script src="data/questions-zoomtext.js"></script>
+  <script src="data/questions-fusion.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>
