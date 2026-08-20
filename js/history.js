@@ -71,7 +71,7 @@
     table.appendChild(caption);
     table.appendChild(thead);
     table.appendChild(tbody);
-    content.appendChild(table);
+    content.appendChild(createEl("div", { class: "table-scroll" }, [table]));
   }
 
   function init() {

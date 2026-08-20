@@ -106,7 +106,7 @@
     table.appendChild(caption);
     table.appendChild(thead);
     table.appendChild(tbody);
-    content.appendChild(table);
+    content.appendChild(createEl("div", { class: "table-scroll" }, [table]));
     content.appendChild(createEl("p", null, [createEl("a", { href: "history.html", text: "View full test history" })]));
 
     section.hidden = false;

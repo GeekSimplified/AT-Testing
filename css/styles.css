@@ -475,10 +475,16 @@ footer.site-footer {
   font-size: 1.1rem;
 }
 
+.table-scroll {
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
 .history-table {
   width: 100%;
+  min-width: 32rem;
   border-collapse: collapse;
-  margin: 0.75rem 0;
+  margin: 0;
 }
 
 .history-table caption {
