@@ -40,6 +40,27 @@ window.AT_PRODUCTS = [
     description: "Combined JAWS + ZoomText product published by Vispero.",
     passThreshold: 80,
     questionCount: 15
+  },
+  {
+    id: "voiceover",
+    name: "iOS VoiceOver",
+    description: "Built-in screen reader for iPhone and iPad, developed by Apple.",
+    passThreshold: 80,
+    questionCount: 15
+  },
+  {
+    id: "talkback",
+    name: "Android TalkBack",
+    description: "Built-in screen reader for Android devices, developed by Google.",
+    passThreshold: 80,
+    questionCount: 15
+  },
+  {
+    id: "windows-commands",
+    name: "Common Windows Keyboard Commands",
+    description: "Everyday Windows shortcuts (copy/paste and more) trainers should know cold.",
+    passThreshold: 80,
+    questionCount: 15
   }
 ];
 

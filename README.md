@@ -1,7 +1,7 @@
 # AT Testing
 
 A lightweight, screen-reader-accessible website for testing assistive technology (AT) trainers'
-knowledge of six products:
+knowledge of nine topics:
 
 - Windows Magnifier
 - Windows Narrator
@@ -9,33 +9,38 @@ knowledge of six products:
 - JAWS for Windows
 - ZoomText
 - Fusion
+- iOS VoiceOver
+- Android TalkBack
+- Common Windows Keyboard Commands (copy/paste and other everyday shortcuts)
 
-Each product has its own 15-question multiple-choice test. A trainer answers every question on
+Each topic has its own 15-question multiple-choice test. A trainer answers every question on
 one page, submits, and immediately sees a score, pass/fail result, and an explanation for every
 question. Question and answer order are shuffled on every attempt, a study mode is available for
 ungraded review, past attempts are saved on-device, and results can be printed for a record.
 
 ## ⚠️ Content is a draft — please review before real use
 
-The 90 questions in `data/*.js` were drafted as a starting point based on general product
+The 135 questions in `data/*.js` were drafted as a starting point based on general product
 knowledge. They have **not been verified against current official vendor documentation** for
-every product and version, and exact keyboard shortcuts in particular can change between
-software releases. Before using this to formally evaluate trainers:
+every product/platform and version, and exact keyboard shortcuts and gestures in particular can
+change between software releases. Before using this to formally evaluate trainers:
 
 1. Check each question (especially keyboard shortcuts) against the current official docs for the
    product version your organization actually supports.
 2. Fix or remove anything inaccurate or outdated.
 3. Consider having a trainer who is expert in each product proofread that product's file.
 
-Confidence is generally higher for Magnifier, Narrator, NVDA, and JAWS (well-documented,
-widely-used keyboard shortcuts) and lower for ZoomText and Fusion, where more of the questions
-are conceptual rather than shortcut-specific — deliberately, to reduce the risk of stating a
-wrong keystroke.
+Confidence is generally higher for Magnifier, Narrator, NVDA, JAWS, VoiceOver, and the Windows
+keyboard commands (well-documented, widely-used shortcuts/gestures) and lower for ZoomText,
+Fusion, and TalkBack, where more of the questions are conceptual rather than shortcut/gesture-
+specific — deliberately, to reduce the risk of stating a wrong keystroke or gesture. TalkBack in
+particular varies more than VoiceOver across Android versions and device manufacturers, so treat
+its questions as an even rougher starting point.
 
 ## How it works
 
 - Plain HTML/CSS/JavaScript, no build step, no backend, no external dependencies.
-- `index.html` lists the six products; each links to `quiz.html?product=<id>`.
+- `index.html` lists the nine topics; each links to `quiz.html?product=<id>`.
 - `quiz.html` reads the `product` query parameter, loads that product's question bank from
   `js/products.js` / `data/questions-<id>.js`, and renders the whole test as one accessible form.
 - Scoring, pass/fail (default 80% threshold, configurable per product), and per-question
