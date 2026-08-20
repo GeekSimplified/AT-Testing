@@ -66,6 +66,16 @@ body {
   top: 0;
 }
 
+.noscript-notice {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 2px solid var(--color-error-text);
+  padding: 1rem 1.25rem;
+  margin: 1rem;
+  border-radius: 0.35rem;
+  font-weight: 600;
+}
+
 a {
   color: var(--color-primary);
 }
@@ -407,7 +417,7 @@ footer.site-footer {
   margin-bottom: 1.25rem;
 }
 
-.study-question h3 {
+.study-question h2 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
   color: var(--color-muted);

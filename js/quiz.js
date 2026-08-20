@@ -146,7 +146,7 @@
       });
 
       var block = createEl("div", { class: "study-question" }, [
-        createEl("h3", { text: "Question " + (index + 1) + " of " + questions.length }),
+        createEl("h2", { text: "Question " + (index + 1) + " of " + questions.length }),
         createEl("p", { class: "study-question-text", text: q.question }),
         list,
         q.explanation ? createEl("p", { class: "study-explanation", text: q.explanation }) : null
@@ -316,7 +316,7 @@
 
       var heading = createEl("h2", { text: "Your Results", tabindex: "-1", id: "results-heading" });
 
-      var banner = createEl("div", { class: "score-banner " + (passed ? "pass" : "fail"), role: "status" }, [
+      var banner = createEl("div", { class: "score-banner " + (passed ? "pass" : "fail") }, [
         createEl("p", { text: "You scored " + correctCount + " out of " + total + " (" + percent + "%)." }),
         createEl("p", {
           text: passed
