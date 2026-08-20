@@ -58,6 +58,11 @@ its questions as an even rougher starting point.
   print-only header (trainer name if entered, product, date) and the full per-question review,
   using a dedicated print stylesheet in `css/styles.css` (`@media print`) that hides navigation
   and interactive controls.
+- **Dark mode**: the "Dark mode" switch in the header (present on every page) toggles a black
+  background/light text theme, saved to `localStorage` (`js/theme.js`) so it persists across
+  visits and pages. A small inline script in each page's `<head>` applies the saved theme before
+  the page paints, to avoid a flash of the wrong theme. Printing always uses the light palette
+  regardless of the on-screen theme — see the `@media print` block in `css/styles.css`.
 
 ## Editing or adding questions
 

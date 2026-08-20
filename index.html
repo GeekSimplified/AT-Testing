@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("atTestingTheme") === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AT Testing – Assistive Technology Trainer Knowledge Tests</title>
   <link rel="stylesheet" href="css/styles.css" />
@@ -14,7 +23,13 @@
   </noscript>
 
   <header class="site-header">
-    <a class="site-title" href="index.html">AT Testing</a>
+    <div class="site-header-inner">
+      <a class="site-title" href="index.html">AT Testing</a>
+      <button type="button" id="theme-toggle" class="theme-toggle no-print" role="switch" aria-checked="false">
+        <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
+    </div>
   </header>
 
   <main id="main">
@@ -51,5 +66,6 @@
 
   <script src="js/products.js"></script>
   <script src="js/home.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>

@@ -8,6 +8,8 @@
   --color-border: #6b6b6b;
   --color-primary: #0b4f8a;
   --color-primary-dark: #073a66;
+  --color-link: #0b4f8a;
+  --color-link-hover: #073a66;
   --color-focus: #d1350b;
   --color-success-bg: #e6f4ea;
   --color-success-text: #14532d;
@@ -15,6 +17,29 @@
   --color-error-text: #7a1a12;
   --color-card-bg: #f4f6f8;
   --max-width: 60rem;
+}
+
+/* Dark mode — toggled via a "data-theme" attribute on <html>, set by js/theme.js.
+   Every color below was chosen and contrast-checked against WCAG AA (4.5:1 text,
+   3:1 non-text) against the specific background it actually appears on. --color-primary
+   stays "dark enough for white button text" in both themes; --color-link is a separate,
+   brighter token for text/links directly on the page background, since one color can't
+   satisfy both "light enough to read on black" and "dark enough for white text on it". */
+:root[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-text: #f2f2f2;
+  --color-muted: #b8b8b8;
+  --color-border: #6b6b6b;
+  --color-primary: #2569a3;
+  --color-primary-dark: #163f61;
+  --color-link: #6cb2ff;
+  --color-link-hover: #9ecbff;
+  --color-focus: #d1350b;
+  --color-success-bg: #123a20;
+  --color-success-text: #7ee2a8;
+  --color-error-bg: #3a1310;
+  --color-error-text: #ff9d8a;
+  --color-card-bg: #171717;
 }
 
 * {
@@ -77,12 +102,12 @@ body {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-link);
 }
 
 a:hover,
 a:focus {
-  color: var(--color-primary-dark);
+  color: var(--color-link-hover);
 }
 
 *:focus-visible {
@@ -95,11 +120,71 @@ header.site-header {
   padding: 1rem;
 }
 
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
 header.site-header .site-title {
   font-size: 1.4rem;
   font-weight: 700;
   text-decoration: none;
   color: var(--color-text);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  padding: 0.25rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--color-text);
+}
+
+.theme-toggle-track {
+  display: inline-block;
+  width: 2.75rem;
+  height: 1.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-card-bg);
+  position: relative;
+  transition: background-color 0.15s ease-in-out;
+  flex-shrink: 0;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--color-muted);
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle-track {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle-thumb {
+  transform: translateX(1.25rem);
+  background: #ffffff;
+}
+
+.theme-toggle-label {
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 main {
@@ -197,13 +282,15 @@ h2 {
 }
 
 .button.secondary {
-  background: #fff;
-  color: var(--color-primary);
+  background: var(--color-bg);
+  color: var(--color-link);
+  border-color: var(--color-link);
 }
 
 .button.secondary:hover {
   background: var(--color-card-bg);
-  color: var(--color-primary-dark);
+  color: var(--color-link-hover);
+  border-color: var(--color-link-hover);
 }
 
 fieldset.question {
@@ -371,6 +458,8 @@ footer.site-footer {
   padding: 0.5rem 0.6rem;
   border: 1px solid var(--color-border);
   border-radius: 0.3rem;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 #past-attempts {
@@ -468,6 +557,33 @@ footer.site-footer {
 }
 
 @media print {
+  /* Printing always uses the light palette, regardless of on-screen dark mode.
+     !important is required here: :root[data-theme="dark"] has higher selector
+     specificity than a plain :root, so without it the dark values would still
+     win even inside this print-only block. */
+  :root {
+    --color-bg: #ffffff !important;
+    --color-text: #1a1a1a !important;
+    --color-muted: #4a4a4a !important;
+    --color-border: #6b6b6b !important;
+    --color-primary: #0b4f8a !important;
+    --color-primary-dark: #073a66 !important;
+    --color-link: #0b4f8a !important;
+    --color-link-hover: #073a66 !important;
+    --color-focus: #d1350b !important;
+    --color-success-bg: #e6f4ea !important;
+    --color-success-text: #14532d !important;
+    --color-error-bg: #fdecea !important;
+    --color-error-text: #7a1a12 !important;
+    --color-card-bg: #f4f6f8 !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 12pt;
+  }
+
   .no-print,
   .site-header,
   .site-footer,
@@ -477,10 +593,6 @@ footer.site-footer {
 
   .print-only {
     display: block;
-  }
-
-  body {
-    font-size: 12pt;
   }
 
   fieldset.question {
