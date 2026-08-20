@@ -34,11 +34,18 @@
           class: "visually-hidden",
           text: questionCount + " questions. Passing score " + product.passThreshold + " percent."
         }),
-        createEl("a", {
-          class: "button",
-          href: "quiz.html?product=" + encodeURIComponent(product.id),
-          text: "Start " + product.name + " test (" + questionCount + " questions)"
-        })
+        createEl("div", { class: "product-card-actions" }, [
+          createEl("a", {
+            class: "button",
+            href: "quiz.html?product=" + encodeURIComponent(product.id),
+            text: "Start " + product.name + " test (" + questionCount + " questions)"
+          }),
+          createEl("a", {
+            class: "button secondary",
+            href: "quiz.html?product=" + encodeURIComponent(product.id) + "&mode=study",
+            text: "Study mode (no grading)"
+          })
+        ])
       ]);
       list.appendChild(card);
     });

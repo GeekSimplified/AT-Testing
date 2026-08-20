@@ -14,25 +14,46 @@
   </header>
 
   <main id="main">
-    <p><a href="index.html">&larr; Back to all tests</a></p>
+    <p class="no-print"><a href="index.html">&larr; Back to all tests</a></p>
 
     <h1 id="quiz-title">Loading test…</h1>
     <p id="quiz-intro"></p>
+    <p id="mode-switch-link" class="no-print"></p>
 
-    <div id="error-summary" role="alert" tabindex="-1" hidden>
-      <h2>Some questions still need an answer</h2>
-      <ul id="error-list"></ul>
-    </div>
+    <!-- Printed record header: populated by js/quiz.js, visible only when printing -->
+    <div id="print-header" class="print-only"></div>
 
-    <form id="quiz-form" novalidate>
-      <div id="questions-container"></div>
-      <button type="submit" class="button">Submit Test</button>
-    </form>
+    <section id="past-attempts" class="no-print" hidden>
+      <h2>Your past attempts at this test</h2>
+      <div id="past-attempts-content"></div>
+    </section>
 
-    <section id="results" aria-live="polite" hidden></section>
+    <section id="test-mode-content">
+      <div class="field-group no-print">
+        <label for="trainer-name">Your name <span class="optional-tag">(optional — included if you print your results)</span></label>
+        <input type="text" id="trainer-name" name="trainer-name" autocomplete="name" />
+      </div>
+
+      <div id="error-summary" class="no-print" role="alert" tabindex="-1" hidden>
+        <h2>Some questions still need an answer</h2>
+        <ul id="error-list"></ul>
+      </div>
+
+      <form id="quiz-form" novalidate>
+        <div id="questions-container"></div>
+        <button type="submit" class="button no-print">Submit Test</button>
+      </form>
+
+      <section id="results" aria-live="polite" hidden></section>
+    </section>
+
+    <section id="study-mode-content" hidden>
+      <div id="study-container"></div>
+      <p class="no-print"><a class="button" id="take-real-test-link" href="#">Take the graded test</a></p>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer no-print">
     <p>AT Testing — an internal knowledge check for assistive technology trainers.</p>
   </footer>
 
@@ -43,6 +64,7 @@
   <script src="data/questions-jaws.js"></script>
   <script src="data/questions-zoomtext.js"></script>
   <script src="data/questions-fusion.js"></script>
+  <script src="js/history-store.js"></script>
   <script src="js/quiz.js"></script>
 </body>
 </html>

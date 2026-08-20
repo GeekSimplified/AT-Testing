@@ -12,7 +12,8 @@ knowledge of six products:
 
 Each product has its own 15-question multiple-choice test. A trainer answers every question on
 one page, submits, and immediately sees a score, pass/fail result, and an explanation for every
-question.
+question. Question and answer order are shuffled on every attempt, a study mode is available for
+ungraded review, past attempts are saved on-device, and results can be printed for a record.
 
 ## ⚠️ Content is a draft — please review before real use
 
@@ -38,9 +39,20 @@ wrong keystroke.
 - `quiz.html` reads the `product` query parameter, loads that product's question bank from
   `js/products.js` / `data/questions-<id>.js`, and renders the whole test as one accessible form.
 - Scoring, pass/fail (default 80% threshold, configurable per product), and per-question
-  explanations are all computed client-side in `js/quiz.js`. Nothing is sent to a server, and no
-  scores are stored — this is a knowledge check, not a tracked assessment system. If you need to
-  record results, see "Possible future additions" below.
+  explanations are all computed client-side in `js/quiz.js`. Nothing is ever sent to a server.
+- Each attempt shuffles both the question order and each question's answer order, so retaking a
+  test (or comparing notes with a co-worker) doesn't just reward memorized positions. The
+  underlying question banks are untouched — only the presentation order is randomized per load.
+- **Study mode** (`quiz.html?product=<id>&mode=study`, linked from the homepage and from the top
+  of every test) shows all questions with the correct answer and explanation up front, ungraded,
+  for review before taking the real test.
+- **Test history**: after each graded attempt, a record (product, score, pass/fail, optional
+  trainer name, timestamp) is saved to the browser's `localStorage` via `js/history-store.js` —
+  see "Test history and privacy" below for exactly what that means.
+- **Printing**: after finishing a test, "Print my results" opens the browser print dialog with a
+  print-only header (trainer name if entered, product, date) and the full per-question review,
+  using a dedicated print stylesheet in `css/styles.css` (`@media print`) that hides navigation
+  and interactive controls.
 
 ## Editing or adding questions
 
@@ -62,6 +74,22 @@ window.AT_QUESTIONS.nvda = [
 - Questions can be added, removed, or reordered freely — the test adapts automatically.
 - To change the number of questions shown or the pass threshold, edit the matching entry in
   `js/products.js` (`questionCount`, `passThreshold`).
+
+## Test history and privacy
+
+Past attempts are saved only with the browser's built-in `localStorage`, scoped to this site's
+origin on that one browser/device:
+
+- Nothing is sent to any server — there is no backend at all.
+- History does **not** sync across devices or browsers, and is lost if the user clears their
+  browser data for this site.
+- Anyone using the same browser profile on the same device can see (and clear) that history at
+  `history.html` — there is no per-user login or separation. If multiple trainers share one
+  computer, treat the trainer-name field as self-reported, not verified identity.
+- Trainers can clear their own history at any time from `history.html`.
+
+If you need results that persist centrally, are tied to verified identities, or are visible to a
+supervisor across devices, that requires adding a real backend — see "Possible future additions".
 
 ## Accessibility notes
 
@@ -107,7 +135,9 @@ script loading — a local server avoids that).
 
 ## Possible future additions (not built yet)
 
-- Centrally storing/reporting results (would require a backend and a decision about where
-  trainer data is stored).
+- Centrally storing/reporting results across devices and trainers (would require a backend, and a
+  decision about where trainer data is stored and who can see it — the current `localStorage`
+  approach is explicitly per-device and unauthenticated, see "Test history and privacy" above).
 - Per-organization editable question banks via an admin UI instead of editing JS files directly.
-- Randomizing question order or drawing a random subset per attempt.
+- Drawing a random subset of questions per attempt, rather than always showing all of them
+  (currently all questions are shown, just reordered).
